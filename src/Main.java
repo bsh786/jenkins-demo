@@ -1,27 +1,40 @@
-import com.bashir.dto.DtoA;
-import com.bashir.dto.DtoB;
-import com.bashir.dto.DtoC;
-import com.bashir.dto.DtoD;
-
-import java.util.Optional;
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        DtoD dtoD = new DtoD("Hi Guys");
-        DtoC dtoC = new DtoC(dtoD);
-        DtoB dtoB = new DtoB();
-        DtoA dtoA = new DtoA(dtoB);
+       System.out.println("Hello world");
 
-        String res = Optional.ofNullable(dtoA)
-                .flatMap(dtoA1 -> Optional.ofNullable(dtoA1.getDtoB()))
-                .flatMap(dtoB1 -> Optional.ofNullable(dtoB1.getDtoC()))
-                .flatMap(dtoC1 -> Optional.ofNullable(dtoC1.getDtoD()))
-                .map(DtoD::getValue)
-                .orElse("NA");
+      if(getResult(getListOne(), getListTwo())) {
+          System.out.println("Matching words: ");
+          getListOne().stream()
+                  .filter(word -> getListTwo().contains(word))
+                  .forEach(System.out::println);
+      }
 
-        System.out.println("Result is: "+res);
+       
+    }
 
+    private static List<String> getListOne() {
+        return List.of("Cookie", "Blue","Sugar", "Bread");
+    }
+
+    private static List<String> getListTwo() {
+        return List.of("Brown", "White" ,"Blue");
+    }
+
+    private static List<Integer> getNumberListOne() {
+        return List.of(17, 21, 95);
+    }
+
+    private static List<Integer> getNumberListTwo() {
+        return List.of(91, 43, 22);
+    }
+
+    private static Boolean getResult(List<String> listOne,
+                List<String> listTwo) {
+         return listOne.stream()
+                 .anyMatch(listTwo::contains);
     }
 }
