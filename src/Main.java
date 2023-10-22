@@ -1,3 +1,5 @@
+import com.bashir.Student;
+
 import java.util.List;
 
 public class Main {
@@ -13,7 +15,9 @@ public class Main {
                   .forEach(System.out::println);
       }
 
-       
+      Student s1 = new Student("Sam");
+      s1.sayHello();
+      
     }
 
     private static List<String> getListOne() {
